@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import re
 
 URL = 'https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_y_territorios_dependientes_por_poblaci%C3%B3n'
 URL2 = 'https://es.wikipedia.org/wiki/Anexo:Pa%C3%ADses_por_continentes'
@@ -73,9 +74,21 @@ America = list()
 for i in search:
     America.append(i.contents[2].text)
 
+#11Copiando paises de Oceania
+search = continentes[11].find_all('tr')
+Oceania = list()
+index = 0
+for i in search:
+    if index == 0:
+        index += 1
+        continue
+    else:
+        td = i.find('td').find_all('a')
+        a = list(td)        
+        Oceania.append(a[0].text)
 
-
-
+for i in Oceania:
+    print(i)
 
 #df = pd.DataFrame({'Paises':Pais, 'Cantidad de habitantes':numHabitantes}, index=list(range(1,245)))
 #df.to_csv('Paises.csv', index=False)
