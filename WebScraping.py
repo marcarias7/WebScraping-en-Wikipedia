@@ -37,33 +37,27 @@ for i in range(1,245):
     nHab = "".join(aux)
     numHabitantes.append(nHab)
 
+
 #Preparando lista de continentes
 continentes_iterable = soup2.body.find('div', class_="mw-parser-output")
 continentes = continentes_iterable.find_all('table')
 
 #Copiando paises Europa
 search = continentes[1].find_all('td',align="center")
-print("====================PAISES EUROPA====================")
-count = 0
+Europa = list()
 for i in search:
-    print(i.contents[2].text,end="\n\n")
-    count += 1
-print(f"Europa tiene {count} paises\n\n\n")
+    Europa.append(i.contents[2].text)
+
 
 #Copiando paises de Asia
 search = continentes[3].find_all('td',align="center")
-print("====================PAISES ASIA====================")
-count = 0
+Asia = list()
 for i in search:
-    print(i.contents[2].text,end="\n\n")
-    count += 1
-print(f"Asia tiene {count} paises\n\n\n")
+    Asia.append(i.contents[2].text)
 
 #Copiando paises de Africa
 search = continentes[7].find_all('tr')
-
-print("====================PAISES AFRICA====================")
-count = 0
+Africa = list()
 index = 0
 for i in search:
     if index == 0:
@@ -71,18 +65,14 @@ for i in search:
         continue
     else:
         show = i.find('td').find_all('a')
-        print(show[0].text,end="\n\n")
-        count += 1
-print(f"Africa tiene {count} paises\n\n\n")
+        Africa.append(show[0].text)
 
 #Copiando paises de America
 search = continentes[8].find_all('td',align="center")
-print("====================PAISES AMERICA====================")
-count = 0
+America = list()
 for i in search:
-    print(i.contents[2].text,end="\n\n")
-    count += 1
-print(f"America tiene {count} paises\n\n\n")
+    America.append(i.contents[2].text)
+
 
 
 
