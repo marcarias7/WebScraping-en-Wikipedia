@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-
+#Definiendo las listas 
 numHabitantes = list()
 Pais = list()
 Continente = []
@@ -11,6 +11,7 @@ Africa = list()
 Asia = list()
 Europa = list()
 
+#Definiendo la funcion para buscar el continente de un pais
 def buscarContinente(country):
     if country in Oceania:
         return "Oceania"
@@ -92,7 +93,6 @@ for i in range(1,2920,12):
 #Copiando cantidad de habitantes
 contenido = soup.table.find('tbody')
 tr = contenido.find_all('tr')
-
 for i in range(1,245):
     search = tr[i].find('td',text=f"{i}")
     iterable_hermanos = search.find_next_siblings('td')
@@ -107,18 +107,16 @@ for i in range(1,245):
     nHab = "".join(aux)
     numHabitantes.append(nHab)
 
-
+#Creando el DataFrame
 df = pd.DataFrame({'Paises':Pais, 'Continente':Continente, 'Cantidad de habitantes':numHabitantes})
-
 inds = []
-
 for k in range(len(Continente)):
     if Continente[k] == "NO ENCONTRADO":
         inds.append(k)
 
+#Borrando datos innecesarios del DataFrame
 df2 = df.drop(inds, axis = 0)
-"""df2.to_csv('Pais.txt', index = False)"""
-print(df)
-print(df2)
-print("SE HAN ELIMINADO LOS ELEMENTOS SIN DATOS EN LA COLUMNA 'Continente'")
+
+#Exportando DataFrame
+df2.to_csv('Pais.txt', index = False)
 print("\n\nEL ARCHIVO FUE EXPORTADO EN FORMATO .CSV")
