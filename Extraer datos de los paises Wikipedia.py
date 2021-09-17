@@ -108,7 +108,7 @@ for i in range(1,245):
     numHabitantes.append(nHab)
 
 #Creando el DataFrame
-df = pd.DataFrame({'Paises':Pais, 'Continente':Continente, 'Cantidad de habitantes':numHabitantes})
+df = pd.DataFrame({'Paises':Pais, 'Continente':Continente,'Superficie':km2, 'Cantidad de habitantes':numHabitantes})
 inds = []
 for k in range(len(Continente)):
     if Continente[k] == "NO ENCONTRADO":
